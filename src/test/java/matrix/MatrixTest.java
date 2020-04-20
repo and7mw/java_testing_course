@@ -6,9 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 class MatrixTest {
 
     @ParameterizedTest
@@ -173,18 +170,6 @@ class MatrixTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
-    @Test
-    void Print_Test() throws Exception {
-        final ByteArrayOutputStream out = new ByteArrayOutputStream();
-        double[][] matirx = {
-                {10, 12, 14},
-                {16, 18, 20}
-        };
-        System.setOut(new PrintStream(out));
-        Matrix.print(matirx);
-        String expected = "10.0 12.0 14.0 \r\n16.0 18.0 20.0 \r\n";
-        Assertions.assertEquals(expected, out.toString());
-    }
 
 
 
