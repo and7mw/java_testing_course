@@ -16,14 +16,7 @@ public class Matrix {
         return true;
     }
 
-//    public static void main(String[] args) throws Exception {
-//        double matrix[][] = new double[1][0];
-//        double correctMatrix[][] = new double[1][1];
-//        add(matrix, correctMatrix);
-//    }
-
     public static double[][] add(double[][] firstMatrix, double[][] secondMatrix) throws Exception {
-//        System.out.println("add");
         if (!isMatrix(firstMatrix) || !isMatrix(secondMatrix))
             throw new Exception("Input two-dimensional array is not matrix");
         if (firstMatrix.length != secondMatrix.length)
@@ -43,7 +36,6 @@ public class Matrix {
     }
 
     public static double[][] subtract(double[][] firstMatrix, double[][] secondMatrix) throws Exception {
-//        System.out.println("sub");
         if (!isMatrix(firstMatrix) || !isMatrix(secondMatrix))
             throw new Exception("Input two-dimensional array is not matrix");
         if (firstMatrix.length != secondMatrix.length)
@@ -63,7 +55,6 @@ public class Matrix {
     }
 
     public static double[][] multiply(double[][] firstMatrix, double[][] secondMatrix) throws Exception {
-//        System.out.println("mult");
         if (!isMatrix(firstMatrix) || !isMatrix(secondMatrix))
             throw new Exception("Input two-dimensional array is not matrix");
         if (firstMatrix[0].length != secondMatrix.length)
@@ -99,4 +90,6 @@ public class Matrix {
             System.out.println();
         }
     }
+
+
 }
