@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 class MatrixTest {
 
     @ParameterizedTest
@@ -118,7 +116,7 @@ class MatrixTest {
     }
 
     @Test
-    void Add_Test() throws Exception {
+    void Add_Test() {
         double[][] firstMatrix = {
             {2, 3, 4},
             {5, 6, 7}
@@ -131,12 +129,16 @@ class MatrixTest {
             {10, 12, 14},
             {16, 18, 20}
         };
-        double actual[][] = Matrix.add(firstMatrix, secondMatrix);
-        Assertions.assertArrayEquals(expected, actual);
+        try {
+            double actual[][] = Matrix.add(firstMatrix, secondMatrix);
+            Assertions.assertArrayEquals(expected, actual);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
-    void Sub_Test() throws Exception {
+    void Sub_Test() {
         double[][] firstMatrix = {
             {2, 3},
             {4, 5},
@@ -152,12 +154,16 @@ class MatrixTest {
             {-6, -6},
             {-6, -6}
         };
-        double actual[][] = Matrix.subtract(firstMatrix, secondMatrix);
-        Assertions.assertArrayEquals(expected, actual);
+        try {
+            double actual[][] = Matrix.subtract(firstMatrix, secondMatrix);
+            Assertions.assertArrayEquals(expected, actual);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
-    void Mult_Test() throws Exception {
+    void Mult_Test() {
         double[][] firstMatrix = {
                 {2, 3},
                 {4, 5},
@@ -172,71 +178,99 @@ class MatrixTest {
                 {87, 96, 105},
                 {125, 138, 151}
         };
-        double actual[][] = Matrix.multiply(firstMatrix, secondMatrix);
-        Assertions.assertArrayEquals(expected, actual);
+        try {
+            double actual[][] = Matrix.multiply(firstMatrix, secondMatrix);
+            Assertions.assertArrayEquals(expected, actual);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
-    void From_File_Add_Test() throws Exception {
+    void From_File_Add_Test() {
         String nameFiles[] = {"matrix1.txt", "matrix2.txt", "add.txt"};
         File files[] = new File[3];
         double[][][] matrices = new double[3][][];
         for (int i = 0; i < nameFiles.length; i++) {
             files[i] = new File(getClass().getClassLoader().getResource(nameFiles[i]).getFile());
-            Scanner scan = new Scanner(files[i]);
-            int numRows = scan.nextInt();
-            int numColumns = scan.nextInt();
-            matrices[i] = new double[numRows][numColumns];
-            for (int j = 0; j < numRows; j++) {
-                for (int k = 0; k < numColumns; k++) {
-                    matrices[i][j][k] = scan.nextDouble();
+            try {
+                Scanner scan = new Scanner(files[i]);
+                int numRows = scan.nextInt();
+                int numColumns = scan.nextInt();
+                matrices[i] = new double[numRows][numColumns];
+                for (int j = 0; j < numRows; j++) {
+                    for (int k = 0; k < numColumns; k++) {
+                        matrices[i][j][k] = scan.nextDouble();
+                    }
                 }
+            } catch (FileNotFoundException fe) {
+                Assertions.fail(fe.getMessage());
             }
         }
-        double actual[][] = Matrix.add(matrices[0], matrices[1]);
-        Assertions.assertArrayEquals(matrices[2], actual);
+        try {
+            double actual[][] = Matrix.add(matrices[0], matrices[1]);
+            Assertions.assertArrayEquals(matrices[2], actual);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
-    void From_File_Sub_Test() throws Exception {
+    void From_File_Sub_Test() {
         String nameFiles[] = {"matrix1.txt", "matrix2.txt", "sub.txt"};
         File files[] = new File[3];
         double[][][] matrices = new double[3][][];
         for (int i = 0; i < nameFiles.length; i++) {
             files[i] = new File(getClass().getClassLoader().getResource(nameFiles[i]).getFile());
-            Scanner scan = new Scanner(files[i]);
-            int numRows = scan.nextInt();
-            int numColumns = scan.nextInt();
-            matrices[i] = new double[numRows][numColumns];
-            for (int j = 0; j < numRows; j++) {
-                for (int k = 0; k < numColumns; k++) {
-                    matrices[i][j][k] = scan.nextDouble();
+            try {
+                Scanner scan = new Scanner(files[i]);
+                int numRows = scan.nextInt();
+                int numColumns = scan.nextInt();
+                matrices[i] = new double[numRows][numColumns];
+                for (int j = 0; j < numRows; j++) {
+                    for (int k = 0; k < numColumns; k++) {
+                        matrices[i][j][k] = scan.nextDouble();
+                    }
                 }
+            } catch (FileNotFoundException fe) {
+                Assertions.fail(fe.getMessage());
             }
         }
-        double actual[][] = Matrix.subtract(matrices[0], matrices[1]);
-        Assertions.assertArrayEquals(matrices[2], actual);
+        try {
+            double actual[][] = Matrix.subtract(matrices[0], matrices[1]);
+            Assertions.assertArrayEquals(matrices[2], actual);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
-    void From_File_Mult_Test() throws Exception {
+    void From_File_Mult_Test() {
         String nameFiles[] = {"matrix1.txt", "matrix2.txt", "mult.txt"};
         File files[] = new File[3];
         double[][][] matrices = new double[3][][];
         for (int i = 0; i < nameFiles.length; i++) {
             files[i] = new File(getClass().getClassLoader().getResource(nameFiles[i]).getFile());
-            Scanner scan = new Scanner(files[i]);
-            int numRows = scan.nextInt();
-            int numColumns = scan.nextInt();
-            matrices[i] = new double[numRows][numColumns];
-            for (int j = 0; j < numRows; j++) {
-                for (int k = 0; k < numColumns; k++) {
-                    matrices[i][j][k] = scan.nextDouble();
+            try {
+                Scanner scan = new Scanner(files[i]);
+                int numRows = scan.nextInt();
+                int numColumns = scan.nextInt();
+                matrices[i] = new double[numRows][numColumns];
+                for (int j = 0; j < numRows; j++) {
+                    for (int k = 0; k < numColumns; k++) {
+                        matrices[i][j][k] = scan.nextDouble();
+                    }
                 }
+            } catch (FileNotFoundException fe) {
+                Assertions.fail(fe.getMessage());
             }
         }
-        double actual[][] = Matrix.multiply(matrices[0], matrices[1]);
-        Assertions.assertArrayEquals(matrices[2], actual);
+        try {
+            double actual[][] = Matrix.multiply(matrices[0], matrices[1]);
+            Assertions.assertArrayEquals(matrices[2], actual);
+        }  catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
 }
